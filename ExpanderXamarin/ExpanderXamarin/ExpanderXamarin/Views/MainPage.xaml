@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ExpanderXamarin"
+             xmlns:expander="clr-namespace:Syncfusion.XForms.Expander;assembly=Syncfusion.Expander.XForms"
+             xmlns:sflistView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" xmlns:viewModel="clr-namespace:ExpanderXamarin.ViewModel" xmlns:extListView="clr-namespace:ExpanderXamarin.ExtendedListView"
+             x:Class="ExpanderXamarin.MainPage" Padding="0,20,0,0">
+
+    <ContentPage.BindingContext>
+        <viewModel:ViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <expander:SfExpander DynamicSizeMode="Content" HeaderIconPosition="End" IconColor="WhiteSmoke" HeaderBackgroundColor="#03506f" >
+                    <expander:SfExpander.Header>
+                        <Grid HeightRequest="50">
+                            <Label Text="InBox" TextColor="White" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                        </Grid>
+                    </expander:SfExpander.Header>
+                    <expander:SfExpander.Content>
+                        <extListView:ExtendedListView x:Name="listView" ItemsSource="{Binding InboxInfo}" ItemSpacing="1" ItemSize="70">
+                            <extListView:ExtendedListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Padding="10,0,0,0" BackgroundColor="White">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="100"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid HorizontalOptions="StartAndExpand">
+                                            <Label LineBreakMode="NoWrap" TextColor="#474747" FontSize="18" Text="{Binding Title}" VerticalOptions="Center"/>
+                                            <Label LineBreakMode="NoWrap" TextColor="#474747" Grid.Row="1" Text="{Binding Subject}" FontSize="16" VerticalOptions="Center"/>
+                                        </Grid>
+                                        <Label TextColor="#474747" HorizontalOptions="EndAndExpand" Padding="5,10,5,10" Grid.Column="1" LineBreakMode="NoWrap" Text="{Binding Date}" FontSize="12"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </extListView:ExtendedListView.ItemTemplate>
+                        </extListView:ExtendedListView>
+                    </expander:SfExpander.Content>
+                </expander:SfExpander>
+                <expander:SfExpander DynamicSizeMode="Content" HeaderIconPosition="End" IconColor="WhiteSmoke" HeaderBackgroundColor="#03506f">
+                    <expander:SfExpander.Header>
+                        <Grid HeightRequest="50">
+                            <Label Text="Tasks" TextColor="White" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                        </Grid>
+                    </expander:SfExpander.Header>
+                    <expander:SfExpander.Content>
+                        <extListView:ExtendedListView x:Name="listView1" ItemsSource="{Binding TasksInfo}" ItemSpacing="1">
+                            <extListView:ExtendedListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Padding="10,0,0,0" BackgroundColor="White">
+                                        <Label LineBreakMode="NoWrap" TextColor="#474747" FontSize="15" Text="{Binding Name}" VerticalOptions="Center"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </extListView:ExtendedListView.ItemTemplate>
+                        </extListView:ExtendedListView>
+                    </expander:SfExpander.Content>
+                </expander:SfExpander>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
